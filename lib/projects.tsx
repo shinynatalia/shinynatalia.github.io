@@ -475,6 +475,183 @@ export const projects: Project[] = [
       ],
     },
     prev: { href: "/projects/servicenow/", small: "Previous project", label: "← ServiceNow IT Analytics" },
+    next: { href: "/projects/denials/", small: "Next project", label: "Denials Management Tracker →" },
+  },
+
+  {
+    slug: "denials",
+    title: "Denials Management Tracker",
+    status: ["ok", "Complete"],
+    img: "/img/dn-thumb.jpg",
+    blurb:
+      "Healthcare claim denials from denial to appeal to resolution, with deadline automations and a leadership dashboard that shows where the money is lost and why.",
+    tags: ["monday.com", "Revenue cycle", "Automations", "Dashboards"],
+    lede: "A monday.com board and dashboard for a revenue cycle team: every denied claim tracked from denial to appeal to recovery, with automations that protect appeal deadlines and a leadership view of where denials come from.",
+    meta: [
+      ["Tool", "monday.com"],
+      ["Domain", "Revenue cycle, healthcare"],
+      ["Built", "Board + dashboard"],
+      ["Data", "Sample data, 80 claims"],
+    ],
+    overview: [
+      "When a payer denies a claim, the clock starts: each denial has an appeal deadline, and a missed deadline means the money is gone. A denials team needs to see which claims need action, who owns them, and which root causes keep producing denials so they can be fixed upstream.",
+      "I built one board for the team's daily work, with the denial reason (CARC code), category, root cause, owner, priority and every key date. Automations keep it current, and a dashboard answers leadership's questions. Claims, clients and payers are sample data; payers are anonymised as Commercial Payer A to D.",
+    ],
+    questions: [
+      ["Exposure", "How much is denied, how much have we recovered, and how much is still at risk?"],
+      ["Root cause", "Which denial types and root causes cost the most?"],
+      ["Workload", "Who owns which claims, and is anyone falling behind?"],
+      ["Urgency", "Which claims need action before their appeal deadline?"],
+    ],
+    stats: [
+      ["$50.5K", "Denied across 80 claims"],
+      ["$12.1K", "Recovered on appeal"],
+      ["$23.7K", "Still open"],
+      ["44.8", "Avg days to resolve"],
+    ],
+    report: {
+      file: "monday.com · Denials Management Tracker",
+      eyebrow: "The build",
+      heading: "View by view",
+      pages: [
+        {
+          img: "/img/dn-board.jpg",
+          name: "Denials board",
+          q: "What was denied, and why?",
+          body: "The working view for the denials team. One row per claim with the client, specialty, payer, CPT code, dates, denial category and CARC reason code, split into Open Denials and Resolved.",
+          list: [
+            "Open Denials and Resolved groups, so the team works from one list",
+            "Denial category, CARC code and root cause on every claim",
+            "CPT codes stored as labels so codes like 00790 keep their leading zeros",
+            "Specialty, payer and client for filtering and charts",
+          ],
+          reads: [
+            ["80", "denied claims across 14 clients, 5 specialties and 6 payers"],
+            ["43", "are still open; 37 are resolved (25 won on appeal, 12 written off)"],
+            ["9", "denial categories, each tied to a CARC reason code"],
+          ],
+        },
+        {
+          img: "/img/dn-resolution.jpg",
+          name: "Deadlines & resolution",
+          q: "How close are we to each deadline, and how long do claims take to close?",
+          body: "The same board, scrolled to the workflow columns. Status, owner and priority drive the work; two formulas turn the dates into a countdown and a time-to-resolve figure.",
+          list: [
+            "Status: New, In Review, Appeal Sent, Resubmitted, Won, Written Off",
+            "Days to Deadline formula: counts down only for claims not yet appealed",
+            "Days to Resolve formula: days from denial to resolution",
+            "Recovered amount recorded on every won appeal",
+          ],
+          reads: [
+            ["44.8", "days on average from denial to resolution"],
+            ["68%", "of resolved claims were won on appeal (25 of 37)"],
+            ["91%", "of the denied amount was recovered on the claims we won"],
+          ],
+        },
+        {
+          img: "/img/dn-dashboard.jpg",
+          name: "Leadership dashboard",
+          q: "Where is the money being lost?",
+          body: "The top of the Denials Command Center. Four KPI tiles, then denied dollars by denial category and by root cause, so leadership can see the size of the problem and where to fix it.",
+          list: [
+            "Total denied, recovered on appeal, open $ at risk, average days to resolve",
+            "Denied $ by denial category, sorted smallest to largest",
+            "Denied $ by root cause: front end, coding, clinical documentation, billing",
+            "All widgets read live from the same board",
+          ],
+          reads: [
+            ["32.7%", "of denied dollars are authorization denials ($16.5K), the largest category"],
+            ["55.9%", "trace back to front-end steps such as eligibility and prior authorization"],
+            ["85%", "of denied dollars were marked preventable"],
+          ],
+        },
+        {
+          img: "/img/dn-workload.jpg",
+          name: "Workload & payers",
+          q: "Who is carrying the load, and which payers deny the most?",
+          body: "Claims by owner stacked by status show each person's open work and outcomes. Denied dollars by payer, stacked by category, show which payer and denial type to tackle first.",
+          list: [
+            "Claims by owner, stacked by status",
+            "Denied $ by payer, stacked by denial category",
+            "Payers anonymised as Commercial Payer A to D",
+          ],
+          reads: [
+            ["23", "claims sit with one owner, including 7 written off and 8 waiting on appeals"],
+            ["$19.2K", "denied by Medicare, the highest of any payer"],
+            ["$8.5K", "of that is authorization, the single biggest payer and category combination"],
+          ],
+        },
+        {
+          img: "/img/dn-urgent.jpg",
+          name: "Urgent claims",
+          q: "Which claims need action now?",
+          body: "The list a team lead works from each morning: every open claim marked High priority, with payer, category, amount, status, owner, appeal deadline and the days left to appeal.",
+          list: [
+            "Filtered to open claims with High priority",
+            "Owner and status show who acts next",
+            "Appeal deadline and Days to Deadline show how much time is left",
+            "Priority is raised automatically 14 days before a deadline",
+          ],
+          reads: [
+            ["13", "open claims are high priority, worth $13.0K"],
+            ["5", "of them haven't been appealed yet, with deadlines from mid-December to late January"],
+            ["3", "are authorization denials, the category the dashboard flags as the costliest"],
+          ],
+        },
+      ],
+    },
+    fixes: {
+      intro:
+        "Most of the risk in a denials tracker is in the data. These came up during the build, and each would have given the team a wrong picture.",
+      items: [
+        ["CPT codes lost their leading zeros", "The import treated CPT codes as numbers, so anesthesia code 00790 became 790 and others gained commas (99,283). Changing the column type restored the original codes, and the old column was removed."],
+        ["Reason codes stored as numbers", "CARC codes came in as a number column, which the board was summing like money. I converted it to text so it reads as a code."],
+        ["A priority scale that read backwards", "Medium was red and High was orange, so the most urgent claims looked less urgent. High is now red, Medium yellow and Low green."],
+        ["Resolved claims mixed in with open work", "All 80 claims sat in one group. I split them into Open Denials and Resolved, and automations now move a claim as soon as it's won or written off."],
+      ],
+    },
+    build: {
+      heading: "Board, automations and dashboard",
+      cols: [
+        {
+          title: "Board",
+          desc: (
+            <>
+              One row per denied claim. Days to Deadline is{" "}
+              <code>IF(AND({"{Appeal Sent}"}="", {"{Resolved Date}"}=""), DAYS({"{Appeal Deadline}"}, TODAY()), "")</code>, so it only counts down
+              for claims that still need an appeal.
+            </>
+          ),
+          chipsLabel: "Board columns",
+          chips: chips([
+            ["Status", "fact"], ["Priority", "fact"], "Payer", "CPT", "Denial Category", "CARC Code", "Root Cause", "Preventable",
+            "Denied Amount", "Appeal Deadline", "Appeal Sent", "Recovered Amount", ["Days to Deadline", "param"], ["Days to Resolve", "param"],
+          ]),
+          legend: [
+            { label: "Status column", ...LEGEND_FACT },
+            { label: "Data column", ...LEGEND_DIM },
+            { label: "Formula", ...LEGEND_CALC },
+          ],
+        },
+        {
+          title: "Automations",
+          desc: "Three rules keep the board current and protect appeal deadlines.",
+          chipsLabel: "Automations",
+          chips: chips([
+            "Won → move to Resolved, stamp Resolved Date",
+            "Written Off → move to Resolved, stamp Resolved Date",
+            "14 days before deadline, no appeal → alert + Priority High",
+          ]),
+        },
+        {
+          title: "Dashboard",
+          desc: "KPI tiles across the top, then where denials come from, who owns them, which payers deny the most, and an urgent list, all from the same board.",
+          chipsLabel: "Dashboard widgets",
+          chips: chips(["KPI tiles", "Denied $ by category", "Denied $ by root cause", "Claims by owner & status", "Denied $ by payer & category", "Urgent claims list"]),
+        },
+      ],
+    },
+    prev: { href: "/projects/onboarding/", small: "Previous project", label: "← Client Onboarding Tracker" },
     next: { href: "/projects/", small: "Back to", label: "All projects" },
   },
 ];
