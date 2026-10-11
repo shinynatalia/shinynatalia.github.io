@@ -328,3 +328,5 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:640px){.qa.qa4{grid-template-columns:1fr}.tabs[style]{grid-template-columns:repeat(2,1fr)!important}.tab{border-bottom:1px solid var(--line)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 a.card{cursor:pointer}
+footer a{color:var(--muted);font-weight:600;text-decoration:none}
+footer a:hover{color:var(--accent)}

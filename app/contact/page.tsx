@@ -26,6 +26,10 @@ export default function ContactPage() {
             <dt>LinkedIn</dt>
             <dd><a href="https://www.linkedin.com/in/nataliashiny" target="_blank" rel="noopener" style={{ fontWeight: 600 }}>linkedin.com/in/nataliashiny</a></dd>
           </div>
+          <div className="cline">
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/shinynatalia" target="_blank" rel="noopener" style={{ fontWeight: 600 }}>github.com/shinynatalia</a></dd>
+          </div>
           <div className="cline"><dt>Resume</dt><dd><ResumeButton label="Download resume (PDF)" icon={false} /></dd></div>
         </dl>
         <div>

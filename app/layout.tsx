@@ -28,6 +28,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer>
           <div className="wrap">
             <span>© 2026 Natalia Shiny</span>
+            <span>
+              <a href="https://github.com/shinynatalia" target="_blank" rel="noopener">GitHub</a>
+              &nbsp;·&nbsp;
+              <a href="https://www.linkedin.com/in/nataliashiny" target="_blank" rel="noopener">LinkedIn</a>
+              &nbsp;·&nbsp;
+              <a href="mailto:shinynatalia@gmail.com">Email</a>
+            </span>
           </div>
         </footer>
       </body>
