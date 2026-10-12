@@ -717,6 +717,7 @@ export const projects: Project[] = [
             "Clients by Onboarding Status, filtered to clients with a status so the total is exactly 27",
             "Specialist Workload, stacked by status, to show each person's mix of live and at-risk work",
             "Built from report templates and customised: measure, dimension, filters and chart type",
+            "One colour scheme on every chart that shows status: navy for Live, blue for On Track, orange for At Risk, light orange for Delayed and grey for Not Started and Ramp Down",
           ],
           reads: [
             ["13", "of 27 clients are live (48%)"],
@@ -730,7 +731,7 @@ export const projects: Project[] = [
           q: "How big is the work, when does it land, and which clients need help?",
           body: "The lower half of the dashboard. Providers by specialty, go-lives by target month, a watchlist of at-risk and delayed clients, and deals by pipeline stage.",
           list: [
-            "Providers by specialty uses a sum, not a count, because providers drive the work",
+            "Providers by specialty uses a sum, not a count, because providers drive the work, sorted largest first",
             "Go-lives grouped by Target Go-Live Date, month by month",
             "Watchlist filtered to At Risk and Delayed",
             "Deals by stage set to all time so it doesn't empty out next month",
