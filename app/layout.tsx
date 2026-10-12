@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import Nav from "@/components/Nav";
 // Self-hosted fonts (no request to Google at build or run time)
 import "@fontsource/libre-caslon-display/400.css";
@@ -37,6 +38,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </span>
           </div>
         </footer>
+        {/* Vercel Web Analytics: page views, countries, referrers, devices (no cookies) */}
+        <Analytics />
       </body>
     </html>
   );
