@@ -3,7 +3,7 @@ import ResumeButton from "@/components/ResumeButton";
 import { ProjectCards } from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
 
-const tools = ["Claude Code", "Power BI", "SQL", "Excel", "Tableau", "monday.com", "Airtable", "Smartsheet"];
+const tools = ["Claude Code", "Power BI", "SQL", "Excel", "Tableau", "monday.com", "HubSpot", "Airtable", "Smartsheet"];
 
 const stack: { group: string; items: string[]; ai?: boolean }[] = [
   { group: "BI & visualization", items: ["Power BI", "Tableau", "QlikSense"] },
@@ -11,7 +11,7 @@ const stack: { group: string; items: string[]; ai?: boolean }[] = [
   { group: "Languages", items: ["SQL (advanced)", "DAX", "Python (basic)"] },
   { group: "Cloud data platforms", items: ["Databricks", "Microsoft Azure"] },
   { group: "Spreadsheets & reporting", items: ["Excel (advanced, pivot tables, VBA & macros)", "Airtable", "Smartsheet", "monday.com"] },
-  { group: "Enterprise systems", items: ["Workday", "Clarity"] },
+  { group: "Enterprise systems", items: ["Workday", "Clarity", "HubSpot"] },
   { group: "AI & developer tools", items: ["Claude Code", "Copilot", "VS Code"], ai: true },
   { group: "Documentation", items: ["Confluence", "PowerPoint"] },
 ];

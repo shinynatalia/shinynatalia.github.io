@@ -652,6 +652,175 @@ export const projects: Project[] = [
       ],
     },
     prev: { href: "/projects/onboarding/", small: "Previous project", label: "← Client Onboarding Tracker" },
+    next: { href: "/projects/hubspot/", small: "Next project", label: "Client Onboarding CRM →" },
+  },
+
+  {
+    slug: "hubspot",
+    title: "Client Onboarding CRM",
+    status: ["ok", "Complete"],
+    img: "/img/hs-thumb.jpg",
+    blurb:
+      "The same 27 onboarding clients in HubSpot: a custom pipeline and properties, workflows that alert on risk and go-live changes, and a live leadership dashboard.",
+    tags: ["HubSpot", "CRM", "Workflows", "Dashboards"],
+    lede: "A HubSpot setup for a client onboarding team: every client as a linked company, contact and deal, an onboarding pipeline, workflows that turn status changes into alerts and owned tasks, and a dashboard leadership can read at a glance.",
+    meta: [
+      ["Tool", "HubSpot (Sales Hub Professional trial)"],
+      ["Domain", "Client onboarding, healthcare"],
+      ["Built", "Pipeline, 10 properties, 3 workflows, dashboard"],
+      ["Data", "Sample data, 27 clients"],
+    ],
+    overview: [
+      "Onboarding teams often run the day-to-day work in a project tool and keep the client record in a CRM. This project is the CRM half of my Client Onboarding Tracker: the same 27 sample clients, held in HubSpot so status, dates and risk live on the client record and changes reach the right person automatically.",
+      "I designed the structure before loading any data: a Client Onboarding pipeline and ten custom company properties with the right field types. Then I imported one file as three linked objects, built three workflows and a six-report dashboard, and tested the automation on a real record. Client names, contacts and figures are sample data.",
+    ],
+    questions: [
+      ["Health", "How many clients are on track, delayed, at risk or live?"],
+      ["Pipeline", "Which onboarding stage is each client in, and is anything overdue?"],
+      ["Capacity", "Who is carrying the most clients, and when is the next go-live crunch?"],
+      ["Response", "When a client slips, does someone hear about it and own the next step?"],
+    ],
+    stats: [
+      ["27", "Onboarding clients"],
+      ["81", "Linked records imported"],
+      ["3", "Live workflows"],
+      ["480", "Providers onboarding"],
+    ],
+    report: {
+      file: "HubSpot · Client Onboarding CRM",
+      eyebrow: "The build",
+      heading: "View by view",
+      pages: [
+        {
+          img: "/img/hs-pipeline.jpg",
+          name: "Onboarding pipeline",
+          q: "Where is every client in onboarding?",
+          body: "The deal board, one card per client. I turned HubSpot's default sales pipeline into a seven-stage onboarding pipeline, so the board reads like the team's real process.",
+          list: [
+            "Kickoff, System Setup, Billing Setup, Test Claims, Go-Live Prep, Live, Ramp Down",
+            "Live uses HubSpot's Closed Won stage and Ramp Down uses Closed Lost, so built-in win and time-to-close reports work for onboarding",
+            "Close date holds the target go-live, so HubSpot flags overdue clients on the card",
+            "Each deal is linked to its company and primary contact",
+          ],
+          reads: [
+            ["27", "clients in the pipeline, matching the monday.com board exactly"],
+            ["5", "are in Test Claims, the busiest open stage"],
+            ["1", "client is flagged overdue: in Go-Live Prep with a target date that has passed"],
+          ],
+        },
+        {
+          img: "/img/hs-dashboard.jpg",
+          name: "Health & workload",
+          q: "How healthy is the portfolio, and who is carrying it?",
+          body: "The top of the Client Onboarding Health dashboard. Clients by onboarding status, then each specialist's clients stacked by status.",
+          list: [
+            "Clients by Onboarding Status, filtered to clients with a status so the total is exactly 27",
+            "Specialist Workload, stacked by status, to show each person's mix of live and at-risk work",
+            "Built from report templates and customised: measure, dimension, filters and chart type",
+          ],
+          reads: [
+            ["13", "of 27 clients are live (48%)"],
+            ["5", "need attention: 3 delayed and 2 at risk"],
+            ["8", "clients sit with one specialist, twice as many as the lightest load"],
+          ],
+        },
+        {
+          img: "/img/hs-dashboard-2.jpg",
+          name: "Capacity & watchlist",
+          q: "How big is the work, when does it land, and which clients need help?",
+          body: "The lower half of the dashboard. Providers by specialty, go-lives by target month, a watchlist of at-risk and delayed clients, and deals by pipeline stage.",
+          list: [
+            "Providers by specialty uses a sum, not a count, because providers drive the work",
+            "Go-lives grouped by Target Go-Live Date, month by month",
+            "Watchlist filtered to At Risk and Delayed",
+            "Deals by stage set to all time so it doesn't empty out next month",
+          ],
+          reads: [
+            ["480", "providers across all clients; Anesthesia and Hospital Medicine are 69% of them"],
+            ["9", "go-lives are due in November, the busiest month on the plan"],
+            ["3", "of the 5 watchlist clients are delayed rather than at risk"],
+          ],
+        },
+        {
+          img: "/img/hs-workflows.jpg",
+          name: "Workflows",
+          q: "What happens automatically when something changes?",
+          body: "Three company-based workflows, all published. Each starts from a property change, so only new changes trigger them and existing records weren't flooded with alerts.",
+          list: [
+            "At-Risk Client Alert: in-app alert with specialist, risk note and target date, then a High-priority call task due next business day, linked to the client",
+            "Go-Live Date Changed: alert with the new date so billing and IT can re-plan",
+            "Client Went Live: stamps Actual Go-Live Date automatically, then a 30-day check-in task",
+            "Re-enrollment on, so a client who slips twice alerts twice",
+          ],
+          reads: [
+            ["3", "workflows replace manual status emails and follow-up reminders"],
+            ["1", "business day to follow up on any client that goes At Risk"],
+            ["30", "days after go-live, a check-in task is created for the account"],
+          ],
+        },
+        {
+          img: "/img/hs-test.jpg",
+          name: "Workflow test",
+          q: "Does the automation actually work?",
+          body: "I tested the At-Risk workflow on one client: changed its status, checked every step in Run History, confirmed the alert and the task, then set the client back so the data still matches the source.",
+          list: [
+            "Run History: trigger, notification, task and association all succeeded",
+            "The alert filled in the client name, specialist and target date from the record",
+            "The task appeared on the client's timeline, so anyone opening the record sees it",
+          ],
+          reads: [
+            ["4", "of 4 steps succeeded on the first run"],
+            ["53s", "from status change to finished run"],
+            ["1", "test client, set back to its original status afterwards"],
+          ],
+        },
+      ],
+    },
+    fixes: {
+      intro:
+        "Most of the risk in a CRM build is in the import and the report filters. These came up during the build, and each would have given the team a wrong picture.",
+      items: [
+        ["An import that would have dropped every contact", "The sample emails use a placeholder domain that HubSpot treats as invalid, and it skips any row with an invalid email. I left the email and domain columns out, so all 27 clients, contacts and deals came through."],
+        ["A date mapped to the wrong object", "Auto-mapping sent Close date to a contact property. I remapped it to the deal's Close Date, where the target go-live belongs."],
+        ["A report that counted half the clients", "The template filtered on Close Date, so it only counted the 13 live clients. Switching the date filter to Create Date brought back all 27."],
+        ["A demo record in the totals", "HubSpot adds a sample company to new accounts, which made the total 28. Filtering on Onboarding Status removed it."],
+      ],
+    },
+    build: {
+      heading: "Data model, workflows and dashboard",
+      cols: [
+        {
+          title: "Data model",
+          desc: "One import created three linked objects per client: company, primary contact and onboarding deal. Custom properties sit on the company, with dropdowns so values stay consistent for workflows and reports.",
+          chipsLabel: "Custom company properties",
+          chips: chips([
+            ["Onboarding Status", "fact"], ["Risk Level", "fact"], "Specialty", "Client Type", "Onboarding Specialist",
+            "Number of Providers", "Contract Signed Date", "Target Go-Live Date", "Actual Go-Live Date", "Risk Note",
+          ]),
+          legend: [
+            { label: "Dropdown with coloured badges", ...LEGEND_FACT },
+            { label: "Other property", ...LEGEND_DIM },
+          ],
+        },
+        {
+          title: "Workflows",
+          desc: "Each workflow pairs a notification with an owned next step, and links any task back to the client record.",
+          chipsLabel: "Workflows",
+          chips: chips([
+            "Status → At Risk: alert + call task (1 business day)",
+            "Target Go-Live Date changes: alert",
+            "Status → Live: stamp Actual Go-Live Date + 30-day check-in",
+          ]),
+        },
+        {
+          title: "Dashboard",
+          desc: "Six reports on one dashboard, each checked against the source file before publishing.",
+          chipsLabel: "Dashboard reports",
+          chips: chips(["Clients by status", "Specialist workload", "Providers by specialty", "Go-lives by month", "Clients needing attention", "Deals by stage"]),
+        },
+      ],
+    },
+    prev: { href: "/projects/denials/", small: "Previous project", label: "← Denials Management Tracker" },
     next: { href: "/projects/", small: "Back to", label: "All projects" },
   },
 ];
