@@ -3,7 +3,7 @@ import ResumeButton from "@/components/ResumeButton";
 import { ProjectCards } from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
 
-const tools = ["Claude Code", "Power BI", "SQL", "Excel", "Tableau", "monday.com", "HubSpot", "Airtable", "Smartsheet"];
+const tools = ["Claude Code", "Power BI", "Excel", "Tableau", "monday.com", "HubSpot", "Airtable", "Smartsheet"];
 
 const stack: { group: string; items: string[]; ai?: boolean }[] = [
   { group: "BI & visualization", items: ["Power BI", "Tableau", "QlikSense"] },
