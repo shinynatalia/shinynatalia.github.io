@@ -8,10 +8,10 @@ const tools = ["Claude Code", "Power BI", "Excel", "Tableau", "monday.com", "Hub
 const stack: { group: string; items: string[]; ai?: boolean }[] = [
   { group: "BI & visualization", items: ["Power BI", "Tableau", "QlikSense"] },
   { group: "Data modelling & ETL", items: ["Power Query (M)", "Star-schema data modelling", "ETL", "Data cleaning & validation"] },
-  { group: "Languages", items: ["SQL (advanced)", "DAX", "Python (basic)"] },
+  { group: "Languages", items: ["SQL", "DAX"] },
   { group: "Cloud data platforms", items: ["Databricks", "Microsoft Azure"] },
-  { group: "Spreadsheets & reporting", items: ["Excel (advanced, pivot tables, VBA & macros)", "Airtable", "Smartsheet", "monday.com"] },
-  { group: "Enterprise systems", items: ["Workday", "Clarity", "HubSpot"] },
+  { group: "Work management & automation", items: ["Excel (advanced, pivot tables, Power Query)", "Airtable", "Smartsheet", "monday.com"] },
+  { group: "Enterprise systems", items: ["Workday", "Clarity", "HubSpot", "Jira"] },
   { group: "AI & developer tools", items: ["Claude Code", "Copilot", "VS Code"], ai: true },
   { group: "Documentation", items: ["Confluence", "PowerPoint"] },
 ];
