@@ -784,7 +784,6 @@ export const projects: Project[] = [
         ["An import that would have dropped every contact", "The sample emails use a placeholder domain that HubSpot treats as invalid, and it skips any row with an invalid email. I left the email and domain columns out, so all 27 clients, contacts and deals came through."],
         ["A date mapped to the wrong object", "Auto-mapping sent Close date to a contact property. I remapped it to the deal's Close Date, where the target go-live belongs."],
         ["A report that counted half the clients", "The template filtered on Close Date, so it only counted the 13 live clients. Switching the date filter to Create Date brought back all 27."],
-        ["A demo record in the totals", "HubSpot adds a sample company to new accounts, which made the total 28. Filtering on Onboarding Status removed it."],
       ],
     },
     build: {
