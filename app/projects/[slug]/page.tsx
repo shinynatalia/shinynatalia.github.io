@@ -37,6 +37,13 @@ export default async function ProjectPage({ params }: Params) {
           <span className={`status ${p.status[0]}`}>{p.status[1]}</span>
           <h1>{p.title}</h1>
           <p className="lede">{p.lede}</p>
+          {p.links && (
+            <p className="proj-links">
+              {p.links.map((l) => (
+                <a key={l.href} className={`btn sm${l.ghost ? " ghost" : ""}`} href={l.href} target="_blank" rel="noopener">{l.label}</a>
+              ))}
+            </p>
+          )}
         </div>
         <dl className="meta">
           {p.meta.map(([dt, dd]) => (

@@ -36,6 +36,7 @@ export type Project = {
   build: { heading: string; cols: BuildCol[] };
   prev: { href: string; small: string; label: string };
   next: { href: string; small: string; label: string };
+  links?: { href: string; label: string; ghost?: boolean }[];
 };
 
 const LEGEND_FACT = { bg: "var(--soft)", border: "#B9C9E2" };
@@ -46,6 +47,167 @@ const chips = (items: (string | [string, "fact" | "param"])[]): Chip[] =>
   items.map((x) => (typeof x === "string" ? { t: x } : { t: x[0], kind: x[1] }));
 
 export const projects: Project[] = [
+  {
+    slug: "sorted",
+    title: "Sorted · AI Data Analyst",
+    status: ["ok", "Live tool"],
+    img: "/img/so-thumb.jpg",
+    blurb:
+      "A live AI tool I built: drop in a messy CSV to get a data-health score, one-click cleaning with a change log, an AI summary, and plain-English questions answered with SQL.",
+    tags: ["AI tool", "Data cleaning", "SQL", "FastAPI", "Next.js"],
+    lede: "Messy data in, answers out. Sorted scores a CSV for data health, fixes what is safe to fix with a full change log, then lets anyone ask questions in plain English and see the SQL behind every answer.",
+    meta: [
+      ["Tool", "Live web app, free to try"],
+      ["Built with", "Claude Code · Next.js · FastAPI · pandas · DuckDB"],
+      ["AI", "GPT-OSS 120B on Groq, model-agnostic"],
+      ["Data", "3 fictional sample datasets, or your own CSV"],
+    ],
+    links: [
+      { href: "https://nataliashiny-ai.vercel.app", label: "Try Sorted live →" },
+      { href: "https://github.com/shinynatalia/ai-data-analyst", label: "Source code", ghost: true },
+    ],
+    overview: [
+      "Most of the time on a reporting job goes into cleaning: extra spaces that break lookups, the same status typed three ways, dates in mixed formats, amounts stored as text. I built Sorted to show how I approach that work, and what changes when AI is added in the right places.",
+      "Cleaning is rule-based on purpose, so the same file always gets the same score and every change can be named in the change log. The AI is used where judgement and language help: summarising the data, turning a question into SQL and explaining the result. It only ever sees column statistics and a few sample rows, never the whole file. I built the app with Claude Code; the samples are fictional.",
+    ],
+    questions: [
+      ["Health", "How clean is this file, and what exactly is wrong with it?"],
+      ["Fix", "Which problems can be fixed safely, and what changed?"],
+      ["Meaning", "What does the data say, in plain English?"],
+      ["Answers", "Can someone non-technical ask a question and check the answer?"],
+    ],
+    stats: [
+      ["3", "Messy sample datasets"],
+      ["67 → 94", "Claims sample health score after one click"],
+      ["42", "Automated backend tests"],
+      ["0", "Uploaded files stored"],
+    ],
+    report: {
+      file: "Sorted · AI Data Analyst",
+      eyebrow: "The tool",
+      heading: "Step by step",
+      pages: [
+        {
+          img: "/img/so-health.jpg",
+          name: "Data health",
+          q: "What is wrong with this file?",
+          body: "Load a sample or upload a CSV. Rules check every column and roll the problems into a health score, with an issue table that says what, where and how many.",
+          list: [
+            "Detects column types, blanks and N/A values, extra spaces, the same value written different ways, numbers stored as text, mixed date formats, invalid emails, duplicate rows and IDs, and outliers",
+            "Each issue has a severity, so mostly-blank columns that are often legitimate count for less",
+            "Column overview with missing and distinct counts and example values",
+          ],
+          reads: [
+            ["67", "health score for the claim denials sample before cleaning"],
+            ["12", "issues found across 20 columns and 82 rows"],
+            ["2", "exact duplicate claims caught, ignoring case and spaces"],
+          ],
+        },
+        {
+          img: "/img/so-clean.jpg",
+          name: "One-click cleaning",
+          q: "What can be fixed safely, and what changed?",
+          body: "Six fixes, each with a checkbox. Apply them and Sorted shows the score before and after, the rows removed, and a change log with real examples of every change.",
+          list: [
+            "Trim spaces, standardise N/A values, unify inconsistent values, convert text to numbers, standardise dates, remove duplicate rows",
+            "Day-first or month-first dates are worked out from values that can only be read one way",
+            "Anything that needs a person to decide, like legitimate blanks or outliers, stays flagged for review",
+            "The cleaned file can be downloaded as a CSV",
+          ],
+          reads: [
+            ["94", "health score after one click, up from 67"],
+            ["16", "amounts converted from text like $249.20 to numbers"],
+            ["4", "issues left for a human decision, not hidden"],
+          ],
+        },
+        {
+          img: "/img/so-summary.jpg",
+          name: "AI summary",
+          q: "What does the data say?",
+          body: "The AI reads the column statistics and the issues the rules found, and writes a short summary for a business reader: what the data is, the quality risks that matter, a few insights and questions worth asking.",
+          list: [
+            "Insights must come from the statistics provided, not guesses",
+            "Suggested questions become one-click buttons in the next step",
+            "The model is told to treat the data as data and ignore any instructions inside it",
+          ],
+          reads: [
+            ["8", "sample rows at most are sent to the AI, plus column statistics"],
+            ["4", "quality points at most, most important first"],
+            ["5", "suggested questions, each answerable with SQL"],
+          ],
+        },
+        {
+          img: "/img/so-ask.jpg",
+          name: "Ask in plain English",
+          q: "Can I ask a question and check the answer?",
+          body: "Type a question or click a suggestion. The AI writes one SQL query, the backend runs it with DuckDB, and the result comes back as a chart, a table and a two-sentence answer, with the SQL one click away.",
+          list: [
+            "Only a single read-only SELECT query is allowed",
+            "File and web access are switched off inside the database, results are capped at 500 rows and slow queries are stopped",
+            "Bar chart for categories, line chart for trends over time",
+          ],
+          reads: [
+            ["1", "SQL query per question, always shown"],
+            ["500", "row cap on any result"],
+            ["10s", "time limit before a query is stopped"],
+          ],
+        },
+        {
+          img: "/img/so-api.jpg",
+          name: "How it's built",
+          q: "How is it put together?",
+          body: "Next.js only draws the screens. All the logic lives in a FastAPI backend, which also publishes interactive API documentation generated from the code.",
+          list: [
+            "Endpoints for health, profile, clean, summary, ask and answer",
+            "Every request is checked against a model before any code runs",
+            "The file is processed in memory and never stored",
+          ],
+          reads: [
+            ["6", "API endpoints"],
+            ["42", "automated tests run on every change"],
+            ["6h", "between automatic checks of the live site"],
+          ],
+        },
+      ],
+    },
+    fixes: {
+      intro: "Early versions flagged things that were not really problems. Each of these would have made a clean file look broken, so I changed the rules.",
+      items: [
+        ["Duplicate IDs in a column that is not an ID", "A customer ID repeats on every order, so the first version reported hundreds of duplicates. Now an ID column is only checked for duplicates when its values are almost all unique."],
+        ["Legitimate blanks sinking the score", "A Resolved Date is blank until a claim is resolved, which is expected. Columns that are mostly blank now count as low severity and are flagged for review, not filled in."],
+        ["Normal large orders marked as outliers", "Ordinary big orders were flagged. A value now has to be far outside the middle of the data and much larger than the typical value before it is called an outlier."],
+      ],
+    },
+    build: {
+      heading: "Frontend, backend and AI",
+      cols: [
+        {
+          title: "Frontend",
+          desc: "Next.js and React screens for loading data, the health report, cleaning options, charts and answers. It sends the CSV to the backend and shows what comes back.",
+          chipsLabel: "Screens",
+          chips: chips(["Load data", "Health report", "Clean", "AI summary", "Ask", "Charts"]),
+        },
+        {
+          title: "Backend",
+          desc: "A FastAPI service does all the work: pandas for profiling and cleaning, DuckDB for SQL, and the calls to the AI. Both parts run on Vercel on one web address.",
+          chipsLabel: "Backend parts",
+          chips: chips([["FastAPI", "fact"], ["pandas", "fact"], ["DuckDB", "fact"], "Request validation", "Read-only SQL guard", "Automated tests"]),
+          legend: [
+            { label: "Core library", ...LEGEND_FACT },
+            { label: "Safeguard", ...LEGEND_DIM },
+          ],
+        },
+        {
+          title: "AI layer",
+          desc: "Model-agnostic: one server setting switches between GPT-OSS on Groq's free tier, a local model in LM Studio, or Claude. A backup model, a short-term answer cache and saved sample answers keep the demo working for every visitor.",
+          chipsLabel: "Reliability",
+          chips: chips(["GPT-OSS 120B", "Backup: GPT-OSS 20B", "Answer cache", "Saved sample answers", "Uptime check every 6 hours"]),
+        },
+      ],
+    },
+    prev: { href: "/projects/", small: "Back to", label: "All projects" },
+    next: { href: "/projects/people-analytics/", small: "Next project", label: "People Analytics Command Center →" },
+  },
   {
     slug: "people-analytics",
     title: "People Analytics Command Center",
@@ -165,7 +327,7 @@ export const projects: Project[] = [
         },
       ],
     },
-    prev: { href: "/projects/", small: "Back to", label: "All projects" },
+    prev: { href: "/projects/sorted/", small: "Previous project", label: "← Sorted · AI Data Analyst" },
     next: { href: "/projects/servicenow/", small: "Next project", label: "ServiceNow IT Analytics →" },
   },
 
