@@ -53,14 +53,14 @@ export const projects: Project[] = [
     status: ["ok", "Live tool"],
     img: "/img/so-thumb.jpg",
     blurb:
-      "A live AI data analyst tool I built: a health score, one-click cleaning, suggested fixes to reach 100, and a chat that answers questions with SQL, a labelled chart and the exact rows it used.",
+      "A live AI data analyst tool I built: a health score, one-click cleaning, suggested fixes to reach 100, file joins, saved cleaning recipes and metric definitions, and a chat that answers questions with SQL, a labelled chart and the exact rows it used.",
     tags: ["AI tool", "Data cleaning", "SQL", "FastAPI", "Next.js"],
-    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log and suggests the remaining fixes for you to approve. Then you chat with the cleaned data: every answer comes with SQL, a labelled chart and a Show data button that opens the exact rows behind it.",
+    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log and suggests the remaining fixes for you to approve. Then you chat with the cleaned data: every answer comes with SQL, a labelled chart and a Show data button that opens the exact rows behind it. It can also join files (an HR export to payroll), replay a saved cleaning recipe on next month's export, and use your own metric definitions in every answer.",
     meta: [
       ["Tool", "Live web app, free to try"],
       ["Built with", "Claude Code · Next.js · FastAPI · pandas · DuckDB"],
       ["AI", "GPT-OSS 120B on Groq, model-agnostic"],
-      ["Data", "4 fictional sample datasets, or your own CSV"],
+      ["Data", "5 fictional sample files (incl. an HR + payroll pair), or your own CSVs"],
     ],
     links: [
       { href: "https://nataliashiny-ai.vercel.app", label: "Try Sorted live →" },
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     stats: [
       ["8,085", "Rows in the messy workforce sample"],
       ["25 → 100", "Its health score after cleaning and suggested fixes"],
-      ["65", "Automated backend tests"],
+      ["79", "Automated backend tests"],
       ["0", "Uploaded files stored"],
     ],
     report: {
@@ -153,6 +153,23 @@ export const projects: Project[] = [
           ],
         },
         {
+          img: "/img/so-combine.jpg",
+          name: "Joins, recipes and metrics",
+          q: "Does it fit real monthly reporting?",
+          body: "Reporting rarely uses one file. Combine joins an HR export to a payroll extract on the employee ID, or stacks monthly exports, then the result is cleaned and queried like any file. Shown here: the fictional workforce sample joined to a fictional payroll extract, with two saved HR metrics.",
+          list: [
+            "Keys match ignoring case, spaces and punctuation, so EMP100177 and emp-100177 are the same person; a Found In column shows who is missing where",
+            "Blanks caused by the join are not counted as missing data and are never filled",
+            "Saved recipes: name the cleaning steps and fixes, then replay them on next month's file in one click, or export them for the team",
+            "Metric definitions such as Attrition rate are built from safe parts; the AI writes metric('Attrition rate') and the backend swaps in the exact formula, so the number can't drift or go above 100%",
+          ],
+          reads: [
+            ["6,629", "rows matched between the HR export and payroll"],
+            ["46", "payroll records with no match in the HR export"],
+            ["223", "active employees missing from payroll, found by one question"],
+          ],
+        },
+        {
           img: "/img/so-home.jpg",
           name: "Homepage",
           q: "What does it look like?",
@@ -189,9 +206,9 @@ export const projects: Project[] = [
         },
         {
           title: "Backend",
-          desc: "A FastAPI service does all the work: pandas for profiling, cleaning and suggested fixes, DuckDB for SQL, and the calls to the AI. Both parts run on Vercel on one web address.",
+          desc: "A FastAPI service does all the work: pandas for profiling, cleaning, suggested fixes and joins, DuckDB for SQL and metric definitions, and the calls to the AI. Both parts run on Vercel on one web address.",
           chipsLabel: "Backend parts",
-          chips: chips([["FastAPI", "fact"], ["pandas", "fact"], ["DuckDB", "fact"], "Read-only SQL guard", "Self-correcting SQL", "65 automated tests"]),
+          chips: chips([["FastAPI", "fact"], ["pandas", "fact"], ["DuckDB", "fact"], "Read-only SQL guard", "Self-correcting SQL", "Join & stack", "Metric definitions", "79 automated tests"]),
           legend: [
             { label: "Core library", ...LEGEND_FACT },
             { label: "Safeguard", ...LEGEND_DIM },
