@@ -55,7 +55,7 @@ export const projects: Project[] = [
     blurb:
       "A live AI data analyst tool I built: a health score, one-click cleaning, suggested fixes to reach 100, file joins, saved cleaning recipes and metric definitions, and a chat that answers questions with SQL, a labelled chart and the exact rows it used.",
     tags: ["AI tool", "Data cleaning", "SQL", "FastAPI", "Next.js"],
-    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log and suggests the remaining fixes for you to approve. Then you chat with the cleaned data: every answer comes with SQL, a labelled chart and a Show data button that opens the exact rows behind it. It can also join files (an HR export to payroll), replay a saved cleaning recipe on next month's export, use your own metric definitions in every answer, compare any number before and after cleaning, and keep each sheet in its own named workspace. Every chart downloads as a PNG for a document or deck.",
+    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log and suggests the remaining fixes for you to approve. Then you chat with the cleaned data: every answer comes with SQL, a labelled chart and a Show data button that opens the exact rows behind it. It can also join files (an HR export to payroll), replay a saved cleaning recipe on next month's export, take fixes typed in the chat (previewed before anything changes), use your own metric definitions in every answer, compare any number before and after cleaning, and keep each sheet in its own named workspace. Every chart downloads as a PNG for a document or deck.",
     meta: [
       ["Tool", "Live web app, free to try"],
       ["Built with", "Claude Code · Next.js · FastAPI · pandas · DuckDB"],
@@ -64,7 +64,6 @@ export const projects: Project[] = [
     ],
     links: [
       { href: "https://nataliashiny-ai.vercel.app", label: "Try Sorted live →" },
-      { href: "https://github.com/shinynatalia/ai-data-analyst", label: "Source code", ghost: true },
     ],
     overview: [
       "Most of the time on a reporting job goes into cleaning: extra spaces that break lookups, the same value typed three ways (FT, Full Time, Full-Time), dates in mixed formats, amounts stored as text, IDs exported twice. I built Sorted to show how I approach that work, and what changes when AI is added in the right places.",
@@ -113,6 +112,7 @@ export const projects: Project[] = [
             "Suggested fixes: keep one row per ID, clear invalid values and emails, fill blanks with the median or “Unknown”, cap extreme values",
             "Each fix explains itself, e.g. “4310000” → 211700 for a salary typed in cents",
             "Expected blanks, like Termination Date for current staff, can be marked as reviewed instead of filled",
+            "Any other fix can be typed in the chat, e.g. “Fill blank Manager ID with Unassigned”: the AI picks from a fixed set of safe operations, the change is previewed with real before → after rows, and nothing changes until you click Apply",
           ],
           reads: [
             ["76", "health score after one click, up from 25"],
