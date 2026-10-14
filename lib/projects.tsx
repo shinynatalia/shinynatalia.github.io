@@ -55,12 +55,12 @@ export const projects: Project[] = [
     blurb:
       "A live AI data analyst tool I built: a health score, one-click cleaning, suggested fixes to reach 100, file joins, saved cleaning recipes and metric definitions, and a chat that answers questions with SQL, a labelled chart and the exact rows it used.",
     tags: ["AI tool", "Data cleaning", "SQL", "FastAPI", "Next.js"],
-    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log and suggests the remaining fixes for you to approve. Then you chat with the cleaned data: every answer comes with SQL, a labelled chart and a Show data button that opens the exact rows behind it. It can also join files (an HR export to payroll), replay a saved cleaning recipe on next month's export, and use your own metric definitions in every answer.",
+    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log and suggests the remaining fixes for you to approve. Then you chat with the cleaned data: every answer comes with SQL, a labelled chart and a Show data button that opens the exact rows behind it. It can also join files (an HR export to payroll), replay a saved cleaning recipe on next month's export, use your own metric definitions in every answer, compare any number before and after cleaning, and keep each sheet in its own named workspace. Every chart downloads as a PNG for a document or deck.",
     meta: [
       ["Tool", "Live web app, free to try"],
       ["Built with", "Claude Code · Next.js · FastAPI · pandas · DuckDB"],
       ["AI", "GPT-OSS 120B on Groq, model-agnostic"],
-      ["Data", "5 fictional sample files (incl. an HR + payroll pair), or your own CSVs"],
+      ["Data", "3 fictional samples plus a payroll file to join, or your own CSVs"],
     ],
     links: [
       { href: "https://nataliashiny-ai.vercel.app", label: "Try Sorted live →" },
@@ -143,6 +143,8 @@ export const projects: Project[] = [
           body: "Each step shows as it happens: writing SQL, running it on the cleaned data, explaining the result. The answer comes with a labelled chart, and the sheet switches to the exact rows and columns it used, filtered the same way as the question.",
           list: [
             "Show data cites the source: columns used, row numbers from the cleaned file and the filter applied",
+            "Ask for a number before and after cleaning to cross-check it: 5,973 active employees as typed in the original file, 6,359 after cleaning",
+            "Every chart downloads as PNG or SVG, or copies as an image, ready for Word or PowerPoint",
             "If the database rejects a query, the AI sees the error and corrects its SQL once",
             "Every chart has a title, axis titles and a value on every bar or point",
           ],
@@ -161,6 +163,7 @@ export const projects: Project[] = [
             "Keys match ignoring case, spaces and punctuation, so EMP100177 and emp-100177 are the same person; a Found In column shows who is missing where",
             "Blanks caused by the join are not counted as missing data and are never filled",
             "Saved recipes: name the cleaning steps and fixes, then replay them on next month's file in one click, or export them for the team",
+            "Named workspaces keep each sheet with its own cleaning, metrics and chat, saved in the browser",
             "Metric definitions such as Attrition rate are built from safe parts; the AI writes metric('Attrition rate') and the backend swaps in the exact formula, so the number can't drift or go above 100%",
           ],
           reads: [
