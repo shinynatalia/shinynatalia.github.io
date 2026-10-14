@@ -15,7 +15,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: { default: "Natalia Shiny | BI Portfolio", template: "%s | Natalia Shiny" },
   description:
-    "Business Intelligence Analyst in Bengaluru. Power BI, SQL, Excel, Tableau and monday.com projects, built end to end from data model to finished dashboard.",
+    "Business Intelligence Analyst in Bengaluru: data analytics, dashboard development and business reporting in Power BI, Excel, SQL and Tableau, plus monday.com and HubSpot projects built end to end.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

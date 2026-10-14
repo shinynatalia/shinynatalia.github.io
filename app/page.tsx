@@ -13,19 +13,20 @@ const stack: { group: string; items: string[]; ai?: boolean }[] = [
   { group: "Work management & automation", items: ["Excel (pivot tables, Power Query)", "Airtable", "Smartsheet", "monday.com"] },
   { group: "Enterprise systems", items: ["Workday", "Clarity", "HubSpot", "Jira"] },
   { group: "AI & developer tools", items: ["Claude Code", "Copilot", "VS Code"], ai: true },
-  { group: "Documentation", items: ["Confluence", "PowerPoint"] },
+  { group: "Documentation & presentation", items: ["Confluence", "PowerPoint (leadership presentations)"] },
 ];
 
 const core = [
   "Dashboard development & reporting",
+  "Business reporting & KPI tracking",
+  "Data analytics & trend analysis",
   "AI-assisted reporting & automation",
-  "KPI tracking",
-  "Trend & pattern analysis",
+  "Stakeholder management",
+  "PowerPoint presentations for leadership",
   "Campaign & content ROI analysis",
   "Data governance & quality",
   "Business process documentation",
   "Client-facing BI delivery",
-  "Stakeholder communication",
   "Cross-functional collaboration",
 ];
 
