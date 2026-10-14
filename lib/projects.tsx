@@ -53,9 +53,9 @@ export const projects: Project[] = [
     status: ["ok", "Live tool"],
     img: "/img/so-thumb.jpg",
     blurb:
-      "A live AI data analyst tool I built: a data-health score, one-click cleaning across every row and column, suggested fixes to reach 100, an AI summary of insights, and plain-English queries answered with SQL and labelled charts.",
+      "A live AI data analyst tool I built: a health score, one-click cleaning, suggested fixes to reach 100, and a chat that answers questions with SQL, a labelled chart and the exact rows it used.",
     tags: ["AI tool", "Data cleaning", "SQL", "FastAPI", "Next.js"],
-    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log, suggests the remaining fixes for you to approve, then answers questions in plain English on the cleaned data, with the SQL and a labelled chart for every answer.",
+    lede: "Messy data in, answers out. Sorted scores a CSV for data health, cleans it with a full change log and suggests the remaining fixes for you to approve. Then you chat with the cleaned data: every answer comes with SQL, a labelled chart and a Show data button that opens the exact rows behind it.",
     meta: [
       ["Tool", "Live web app, free to try"],
       ["Built with", "Claude Code · Next.js · FastAPI · pandas · DuckDB"],
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     stats: [
       ["8,085", "Rows in the messy workforce sample"],
       ["25 → 100", "Its health score after cleaning and suggested fixes"],
-      ["60", "Automated backend tests"],
+      ["65", "Automated backend tests"],
       ["0", "Uploaded files stored"],
     ],
     report: {
@@ -89,13 +89,13 @@ export const projects: Project[] = [
       pages: [
         {
           img: "/img/so-health.jpg",
-          name: "Data health",
+          name: "Workspace and health check",
           q: "What is wrong with this file?",
-          body: "Load a sample or upload a CSV. Rules check every column and roll the problems into a health score, with an issue table that says what, where and how many. Shown here: a fictional 8,085-row workforce export.",
+          body: "The analysis page has three panes: processing stages on the left, a chat in the centre and the data on the right. Loading a file runs a health check, and the problems are highlighted in the sheet. Shown here: a fictional 8,085-row workforce export.",
           list: [
             "Detects column types, blanks and N/A values, extra spaces, the same value written different ways, numbers stored as text, mixed date formats, invalid emails, duplicate rows and IDs, and outliers",
-            "Each issue has a severity, so mostly-blank columns that are often legitimate count for less",
-            "Column overview with missing and distinct counts and example values",
+            "Cells are colour-coded in the sheet: extra spaces, N/A values, wrong formats and invalid emails",
+            "Each column header shows how many issues it has",
           ],
           reads: [
             ["25", "health score for the workforce sample before cleaning"],
@@ -107,12 +107,12 @@ export const projects: Project[] = [
           img: "/img/so-clean.jpg",
           name: "Cleaning and suggested fixes",
           q: "What can be fixed safely, and what needs a decision?",
-          body: "Apply fixes cleans every row and column and logs each change. Whatever is still flagged becomes a checklist of suggested fixes; tick the ones you agree with and apply them with a second button.",
+          body: "Apply fixes cleans every row and column and logs each change. Whatever is still flagged becomes a checklist of suggested fixes; click one to see how it works and a real example from the file, then apply the ones you agree with.",
           list: [
-            "Standard fixes: spaces, N/A values, numbers stored as text, dates to YYYY-MM-DD, duplicate rows",
             "The same value written different ways is unified across the sheet: FT / Full Time → Full-Time, Y / TRUE → Yes, Pharmacy Ops. → Pharmacy Operations",
             "Suggested fixes: keep one row per ID, clear invalid values and emails, fill blanks with the median or “Unknown”, cap extreme values",
-            "Blanks that are expected, like Termination Date for current staff, can be marked as reviewed instead of filled",
+            "Each fix explains itself, e.g. “4310000” → 211700 for a salary typed in cents",
+            "Expected blanks, like Termination Date for current staff, can be marked as reviewed instead of filled",
           ],
           reads: [
             ["76", "health score after one click, up from 25"],
@@ -124,47 +124,47 @@ export const projects: Project[] = [
           img: "/img/so-summary.jpg",
           name: "AI summary",
           q: "What does the data say?",
-          body: "The AI reads statistics from the cleaned data and writes a short set of insights for a business reader: how big it is, how it breaks down, the shares, averages and ranges that matter.",
+          body: "Ask for a summary and the AI reads statistics from the cleaned data, then writes insights for a business reader: how big it is, how it breaks down, and the shares, averages and ranges that matter. Live output from GPT-OSS 120B.",
           list: [
             "All insight, no talk about cleaning: headcount, status mix, employment types, largest and smallest groups, time span",
             "Every number must come from the statistics provided",
-            "Suggested questions become one-click buttons in the next step",
+            "Suggested questions appear as one-click chips above the chat box",
           ],
           reads: [
-            ["6–8", "insights per summary"],
+            ["8,000", "employees after cleaning, 79.3% of them active"],
+            ["78.4%", "full-time, 16.5% part-time and 5.1% contractors"],
             ["5", "sample rows at most are sent to the AI, plus column statistics"],
-            ["0", "uploaded files stored on the server"],
           ],
         },
         {
           img: "/img/so-ask.jpg",
-          name: "Query the data",
+          name: "Chat and cited rows",
           q: "Can I ask a question and check the answer?",
-          body: "Type a question or click a suggestion. The AI writes one SQL query, the backend runs it with DuckDB on the cleaned data, and the result comes back as a labelled chart, a table and a short answer, with the SQL one click away.",
+          body: "Each step shows as it happens: writing SQL, running it on the cleaned data, explaining the result. The answer comes with a labelled chart, and the sheet switches to the exact rows and columns it used, filtered the same way as the question.",
           list: [
+            "Show data cites the source: columns used, row numbers from the cleaned file and the filter applied",
+            "If the database rejects a query, the AI sees the error and corrects its SQL once",
             "Every chart has a title, axis titles and a value on every bar or point",
-            "Two-category questions get one bar per combination, e.g. “Pharmacy · Contractor”",
-            "Only a single read-only SELECT query is allowed; file and web access are switched off and slow queries are stopped",
           ],
           reads: [
-            ["24", "job family × employment type combinations in this answer"],
-            ["500", "row cap on any result"],
-            ["10s", "time limit before a query is stopped"],
+            ["1,948", "active employees in Retail Store Operations, the largest department"],
+            ["6,340", "cited rows, filtered to Employee Status = Active"],
+            ["8", "departments in the chart, each labelled with its value"],
           ],
         },
         {
           img: "/img/so-home.jpg",
-          name: "Design",
+          name: "Homepage",
           q: "What does it look like?",
-          body: "A minimal, product-style home page that leads with what the tool does: six key features, then the five steps in order.",
+          body: "A separate homepage explains the tool before you open it: what it fixes, how it works and why the answers can be trusted, with drawn visuals of the product.",
           list: [
-            "Next.js only draws the screens; a FastAPI backend does all the work and publishes interactive API docs",
-            "Works on desktop and mobile",
-            "Live site checked automatically every 6 hours",
+            "Green “checked and good to go” theme",
+            "Before → after cleaning visual and the 25 → 76 → 100 score journey",
+            "Works on desktop and mobile; the workspace switches to tabs on small screens",
           ],
           reads: [
-            ["5", "steps from loading data to answers"],
-            ["7", "API endpoints"],
+            ["2", "pages: homepage and the analysis workspace"],
+            ["3", "panes in the workspace: stages, chat and data"],
             ["6h", "between automatic checks of the live site"],
           ],
         },
@@ -183,15 +183,15 @@ export const projects: Project[] = [
       cols: [
         {
           title: "Frontend",
-          desc: "Next.js and React screens for loading data, the health report, cleaning and suggested fixes, insights and queries, with labelled SVG charts. It sends the CSV to the backend and shows what comes back.",
+          desc: "Next.js and React: a homepage, and a three-pane workspace with processing stages, a chat with live steps, a spreadsheet view with highlights and cited rows, and labelled SVG charts.",
           chipsLabel: "Screens",
-          chips: chips(["Load data", "Data health", "Clean + suggested fixes", "AI summary", "Query the data"]),
+          chips: chips(["Homepage", "Stages", "Chat", "Data sheet", "Cited rows"]),
         },
         {
           title: "Backend",
           desc: "A FastAPI service does all the work: pandas for profiling, cleaning and suggested fixes, DuckDB for SQL, and the calls to the AI. Both parts run on Vercel on one web address.",
           chipsLabel: "Backend parts",
-          chips: chips([["FastAPI", "fact"], ["pandas", "fact"], ["DuckDB", "fact"], "Request validation", "Read-only SQL guard", "60 automated tests"]),
+          chips: chips([["FastAPI", "fact"], ["pandas", "fact"], ["DuckDB", "fact"], "Read-only SQL guard", "Self-correcting SQL", "65 automated tests"]),
           legend: [
             { label: "Core library", ...LEGEND_FACT },
             { label: "Safeguard", ...LEGEND_DIM },
