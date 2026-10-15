@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
   // Google Search Console: the verification code goes here once the site is added there.
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
+  verification: { google: "mp0jOyWIC_rW5j99vduYo9gS2elorOtC_sKvqfIjN1I" },
 };
 
 // Tells Google who the site belongs to, so a search for her name can show it.
