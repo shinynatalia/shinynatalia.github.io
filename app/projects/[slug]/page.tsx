@@ -13,7 +13,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const p = getProject((await params).slug);
-  return p ? { title: p.title, description: p.lede } : {};
+  if (!p) return {};
+  const url = `/projects/${p.slug}/`;
+  return {
+    title: p.title,
+    description: p.blurb,
+    alternates: { canonical: url },
+    openGraph: { type: "article", title: p.title, description: p.blurb, url, images: p.img ? [{ url: p.img }] : undefined },
+  };
 }
 
 export default async function ProjectPage({ params }: Params) {

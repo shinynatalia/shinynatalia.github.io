@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ProjectCards } from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
 
-export const metadata: Metadata = { title: "Projects" };
+export const metadata: Metadata = { title: "Projects", alternates: { canonical: "/projects/" } };
 
 export default function ProjectsPage() {
   return (

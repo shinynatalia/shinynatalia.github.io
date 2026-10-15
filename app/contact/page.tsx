@@ -3,7 +3,7 @@ import CopyEmail from "@/components/CopyEmail";
 import ResumeButton from "@/components/ResumeButton";
 import { CheckIcon } from "@/components/Icons";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = { title: "Contact", alternates: { canonical: "/contact/" } };
 
 const looking = [
   "Business Intelligence and analytics roles",
