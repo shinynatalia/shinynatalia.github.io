@@ -78,10 +78,10 @@ export default function ReportViewer({ id, file, pages }: Props) {
           </button>
         </div>
         <div
-          className="tabs"
+          className={`tabs${n > 5 ? " wrap" : ""}`}
           role="tablist"
           aria-label="Report pages"
-          style={{ gridTemplateColumns: `repeat(${n},1fr)` }}
+          style={{ gridTemplateColumns: `repeat(${n > 5 ? Math.ceil(n / 2) : n},1fr)` }}
           onKeyDown={(e) => {
             if (e.key === "ArrowRight") { e.preventDefault(); show(cur + 1, true); }
             if (e.key === "ArrowLeft") { e.preventDefault(); show(cur - 1, true); }
