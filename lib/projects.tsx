@@ -856,6 +856,7 @@ export const projects: Project[] = [
       "Onboarding teams often run the day-to-day work in a project tool and keep the client record in a CRM. This project is the CRM half of my Client Onboarding Tracker: the same 27 sample clients, held in HubSpot so status, dates and risk live on the client record and changes reach the right person automatically.",
       "I designed the structure before loading any data: a Client Onboarding pipeline and ten custom company properties with the right field types. Then I imported one file as three linked objects, built three workflows and a six-report dashboard, and tested the automation on a real record. Client names, contacts and figures are sample data.",
       "In a second pass I added what an onboarding leader asks next: a Delay Reason field, two calculated fields (estimated annual revenue and days to go-live), three more reports, a segment that catches overdue go-lives, a pipeline rule that stops clients skipping setup stages, and a weekly email of the dashboard.",
+      "Finally I added a brand-new client and ran it through the whole system end to end: into Provider Enrollment, then marked delayed with no reason given. Both new workflows fired on their own and put three owned tasks on the record, and the client appeared in every report without anyone touching a chart.",
       "Then I attacked the biggest cause of delay. Provider enrollment became its own pipeline stage with a playbook that hands every client the same task list, and a reminder workflow makes sure no client is ever marked delayed without a recorded reason \u2014 so the delay report stays worth reading.",
     ],
     questions: [
@@ -1041,6 +1042,24 @@ export const projects: Project[] = [
             ["1", "business day to record why a client slipped"],
             ["0", "tasks created when the reason is already there, because of the \u201conly if unknown\u201d filter"],
             ["100%", "of delayed clients end up with a cause, which is what makes the Delays by Reason report trustworthy"],
+          ],
+        },
+        {
+          img: "/img/hs-newclient.jpg",
+          name: "New client, end to end",
+          q: "Does any of this actually work on a client that didn't exist this morning?",
+          body: "I created a new client, Northstar Anesthesia Group, gave it a deal, and drove it through the process while watching the run history. Both new workflows fired on their own. Nothing in this test was set up in advance.",
+          list: [
+            "Moving the deal from Kickoff offered Provider Enrollment as the clean next step and flagged System Setup and Billing Setup as rule bypasses — the no-skip rule working in the open",
+            "Entering Provider Enrollment ran the playbook: two tasks created and linked to the client, due in 3 and 10 business days",
+            "Marking the client Delayed with no reason ran the reminder: a third task, due the next business day",
+            "Filling in the Delay Reason closed the loop, and the client then appeared in Clients Needing Attention, Deals by Stage and Delays by Reason with no manual work",
+            "The dashboard figures on the other pages are the 27-client sample, captured before this 28th test client was added",
+          ],
+          reads: [
+            ["3", "tasks created automatically, none of them typed by a person"],
+            ["0", "errors across both runs; the playbook took 1 minute, the reminder 38 seconds"],
+            ["2", "workflows proven on a client created from scratch, not on seeded data"],
           ],
         },
         {
