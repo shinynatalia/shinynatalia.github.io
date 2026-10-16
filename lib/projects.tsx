@@ -843,19 +843,20 @@ export const projects: Project[] = [
     status: ["ok", "Complete"],
     img: "/img/hs-thumb.jpg",
     blurb:
-      "The same 27 onboarding clients in HubSpot: a custom pipeline with stage rules, workflows that alert on risk and go-live changes, and a leadership dashboard that shows why clients are delayed and how much revenue is waiting on go-live.",
+      "The same 27 onboarding clients in HubSpot: an eight-stage pipeline with stage rules and standard playbooks, five workflows that alert on risk and keep the data honest, and a leadership dashboard that shows why clients are delayed and how much revenue is waiting on go-live.",
     tags: ["HubSpot", "CRM", "Workflows", "Dashboards"],
     lede: "A HubSpot setup for a client onboarding team: every client as a linked company, contact and deal, an onboarding pipeline that can't be skipped, workflows that turn status changes into alerts and owned tasks, and a weekly dashboard that answers where every client is, what's stuck and why, and how much revenue is still waiting on go-live.",
     meta: [
       ["Tool", "HubSpot (Sales Hub Professional trial)"],
       ["Domain", "Client onboarding, healthcare"],
-      ["Built", "Pipeline + stage rule, 13 properties, 3 workflows, 9-report dashboard"],
+      ["Built", "8-stage pipeline + rules, 13 properties, 5 workflows, 9-report dashboard"],
       ["Data", "Sample data, 27 clients"],
     ],
     overview: [
       "Onboarding teams often run the day-to-day work in a project tool and keep the client record in a CRM. This project is the CRM half of my Client Onboarding Tracker: the same 27 sample clients, held in HubSpot so status, dates and risk live on the client record and changes reach the right person automatically.",
       "I designed the structure before loading any data: a Client Onboarding pipeline and ten custom company properties with the right field types. Then I imported one file as three linked objects, built three workflows and a six-report dashboard, and tested the automation on a real record. Client names, contacts and figures are sample data.",
       "In a second pass I added what an onboarding leader asks next: a Delay Reason field, two calculated fields (estimated annual revenue and days to go-live), three more reports, a segment that catches overdue go-lives, a pipeline rule that stops clients skipping setup stages, and a weekly email of the dashboard.",
+      "Then I attacked the biggest cause of delay. Provider enrollment became its own pipeline stage with a playbook that hands every client the same task list, and a reminder workflow makes sure no client is ever marked delayed without a recorded reason \u2014 so the delay report stays worth reading.",
     ],
     questions: [
       ["Health", "How many clients are on track, delayed, at risk or live, and why are the stuck ones stuck?"],
@@ -866,7 +867,7 @@ export const projects: Project[] = [
     stats: [
       ["27", "Onboarding clients"],
       ["9", "Dashboard reports"],
-      ["3", "Live workflows"],
+      ["5", "Live workflows"],
       ["480", "Providers onboarding"],
     ],
     report: {
@@ -880,7 +881,7 @@ export const projects: Project[] = [
           q: "Where is every client in onboarding?",
           body: "The deal board, one card per client. I turned HubSpot's default sales pipeline into a seven-stage onboarding pipeline, so the board reads like the team's real process.",
           list: [
-            "Kickoff, System Setup, Billing Setup, Test Claims, Go-Live Prep, Live, Ramp Down",
+            "Kickoff, Provider Enrollment, System Setup, Billing Setup, Test Claims, Go-Live Prep, Live, Ramp Down",
             "Live uses HubSpot's Closed Won stage and Ramp Down uses Closed Lost, so built-in win and time-to-close reports work for onboarding",
             "Close date holds the target go-live, so HubSpot flags overdue clients on the card",
             "Each deal is linked to its company and primary contact",
@@ -978,7 +979,7 @@ export const projects: Project[] = [
           img: "/img/hs-workflows.jpg",
           name: "Workflows",
           q: "What happens automatically when something changes?",
-          body: "Three company-based workflows, all published. Each starts from a property change, so only new changes trigger them and existing records weren't flooded with alerts.",
+          body: "The first three company-based workflows, all published. Each starts from a property change, so only new changes trigger them and existing records weren't flooded with alerts. Two more came later, on the next pages.",
           list: [
             "At-Risk Client Alert: in-app alert with specialist, risk note and target date, then a High-priority call task due next business day, linked to the client",
             "Go-Live Date Changed: alert with the new date so billing and IT can re-plan",
@@ -986,7 +987,7 @@ export const projects: Project[] = [
             "Re-enrollment on, so a client who slips twice alerts twice",
           ],
           reads: [
-            ["3", "workflows replace manual status emails and follow-up reminders"],
+            ["5", "published workflows in total, counting the two added later"],
             ["1", "business day to follow up on any client that goes At Risk"],
             ["30", "days after go-live, a check-in task is created for the account"],
           ],
@@ -1005,6 +1006,41 @@ export const projects: Project[] = [
             ["4", "of 4 steps succeeded on the first run"],
             ["53s", "from status change to finished run"],
             ["1", "test client, set back to its original status afterwards"],
+          ],
+        },
+        {
+          img: "/img/hs-enrollment.jpg",
+          name: "Enrollment playbook",
+          q: "How do we make the slowest step run the same way every time?",
+          body: "Provider enrollment is the biggest cause of delay in my sample data, so I gave it its own pipeline stage and a playbook. When a client's deal enters Provider Enrollment, HubSpot creates the standard enrollment task list on that client automatically.",
+          list: [
+            "Provider Enrollment sits second, straight after Kickoff, because payers set the pace and approvals take weeks",
+            "Step 1 task, due in 3 business days: collect NPI, state licence, DEA, board certification, malpractice cover, CAQH access and the group's W-9 and TIN",
+            "Step 2 task, due in 10 business days: submit each provider to every payer and record the submission date and reference number",
+            "Each task carries the client's name and is linked to the company, so it shows on the client record",
+            "Added to the no-skip rule, so nothing reaches Test Claims without passing enrollment",
+          ],
+          reads: [
+            ["2", "of the 5 delayed clients are held up by provider enrollment, which is why it earned its own stage"],
+            ["0", "steps left to anyone's memory: the task list is created by the system, not by the specialist"],
+            ["30%", "stage probability, between Kickoff at 20% and System Setup at 40%"],
+          ],
+        },
+        {
+          img: "/img/hs-reminder.jpg",
+          name: "Delay-reason reminder",
+          q: "How do we keep the delay report honest?",
+          body: "A delay chart is only useful if every delayed client has a reason recorded. This workflow watches for the gap: the moment a client is marked Delayed or At Risk with no reason on the record, it creates a task asking for one.",
+          list: [
+            "Trigger: Onboarding Status changes to Delayed or At Risk",
+            "Only start if Delay Reason is unknown \u2014 so a specialist who already filled it in is never nagged",
+            "Creates \u201cAdd delay reason: [client]\u201d, due next business day, with the six options listed in the task notes",
+            "Re-enrollment on, so a client who slips again later is caught again",
+          ],
+          reads: [
+            ["1", "business day to record why a client slipped"],
+            ["0", "tasks created when the reason is already there, because of the \u201conly if unknown\u201d filter"],
+            ["100%", "of delayed clients end up with a cause, which is what makes the Delays by Reason report trustworthy"],
           ],
         },
         {
@@ -1062,6 +1098,8 @@ export const projects: Project[] = [
             "Status → At Risk: alert + call task (1 business day)",
             "Target Go-Live Date changes: alert",
             "Status → Live: stamp Actual Go-Live Date + 30-day check-in",
+            "Deal enters Provider Enrollment: 2 playbook tasks",
+            "Delayed/At Risk with no reason: reminder task",
             "Pipeline rule: no skipping setup stages",
             "Overdue Go-Lives segment (auto-updating)",
             "Dashboard emailed Mondays 8 AM",
