@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ResumeButton from "./ResumeButton";
-import ThemeToggle from "./ThemeToggle";
 
 const items = [
   { href: "/", label: "Home", section: "home" },
@@ -26,7 +25,6 @@ export default function Nav() {
             </Link>
           ))}
           <ResumeButton size="sm" style={{ marginLeft: 8 }} />
-          <ThemeToggle />
         </nav>
       </div>
     </header>
