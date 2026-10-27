@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import Nav from "@/components/Nav";
-// Self-hosted fonts (no request to Google at build or run time)
-import "@fontsource/libre-caslon-display/400.css";
-import "@fontsource/libre-caslon-text/400.css";
-import "@fontsource/libre-caslon-text/400-italic.css";
-import "@fontsource/manrope/400.css";
-import "@fontsource/manrope/500.css";
-import "@fontsource/manrope/600.css";
-import "@fontsource/manrope/700.css";
+// Self-hosted variable font (no request to Google at build or run time)
+import "@fontsource-variable/inter";
 import "./globals.css";
 
 
@@ -46,9 +40,16 @@ const PERSON = {
   sameAs: ["https://www.linkedin.com/in/nataliashiny", "https://github.com/shinynatalia"],
 };
 
+// Runs before paint: reads the saved choice, falls back to the OS setting.
+const THEME_SCRIPT = `try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Applies the saved theme before first paint so there is no flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON) }} />
         <Nav />
