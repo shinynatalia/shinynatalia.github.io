@@ -6,10 +6,9 @@ import { projects } from "@/lib/projects";
 const tools = ["Claude Code", "Power BI", "Excel", "Tableau", "monday.com", "HubSpot", "Airtable", "Smartsheet"];
 
 const stack: { group: string; items: string[]; ai?: boolean }[] = [
-  { group: "BI & visualization", items: ["Power BI", "Tableau", "QlikSense"] },
+  { group: "BI & visualization", items: ["Power BI", "Tableau"] },
   { group: "Data modelling & ETL", items: ["Power Query (M)", "Star-schema data modelling", "ETL", "Data cleaning & validation"] },
   { group: "Languages", items: ["SQL", "DAX"] },
-  { group: "Cloud data platforms", items: ["Databricks", "Microsoft Azure"] },
   { group: "Work management & automation", items: ["Excel (pivot tables, Power Query)", "Airtable", "Smartsheet", "monday.com"] },
   { group: "Enterprise systems", items: ["Workday", "Clarity", "HubSpot", "Jira"] },
   { group: "AI & developer tools", items: ["Claude Code", "Copilot", "VS Code"], ai: true },
